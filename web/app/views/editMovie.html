@@ -1,0 +1,30 @@
+<div ng-controler="EditMovieController">
+<h1>Muokkaa elokuvaa</h1>
+    <form name="movieForm">
+        <label>Nimi</label>
+        <input name="movieName" type="text" ng-model="movie.name" required ng-minlength="1">
+        <div ng-show="movieForm.movie.name.$invalid && movieForm.movie.name.$dirty">
+            <p>Elokuvan nimi ei saa olla tyhjä</p>
+        </div>
+        <br>
+        <label>Ohjaaja</label>
+        <input name="movieDirector" type="text" ng-model="movie.director" required ng-minlength="1">
+        <div ng-show="movieForm.movie.director.$invalid && movieForm.movie.director.$dirty">
+            <p>Ohjaaja ei saa olla tyhjä</p>
+        </div>
+        <br>
+        <label>Julkaisuvuosi</label>
+        <input name="movieYear" type="number" ng-model="movie.year" required ng-pattern="/^[0-9]{4,}$/">
+        <div ng-show="movieForm.movie.year.$invalid && movieForm.movie.year.$dirty">
+            <p>Julkaisuvuosi ei ole validi</p>
+        </div>
+        <br>
+        <label>Kuvaus</label>
+        <textarea name="movieDescription" type="text" ng-model="movie.description" required ng-minlength="1">{{movie.description}}</textarea>
+        <div ng-show="movieForm.movie.description.$invalid && movieForm.movie.description.$dirty">
+            <p>Kuvaus ei saa olla tyhjä</p>
+        </div>
+        <br>
+        <input type="submit" value="Tallenna" ng-click="saveMovie()" ng-disabled="movieForm.$invalid">
+    </form>
+</div>
