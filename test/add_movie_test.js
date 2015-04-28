@@ -2,25 +2,31 @@ describe('Add movie', function(){
 	var controller, scope;
 
 	var FirebaseServiceMock;
-
+        
   	beforeEach(function(){
   		// Lisää moduulisi nimi tähän
-    	module('MyAwesomeModule');
+    	module('MovieApp');
 
     	FirebaseServiceMock = (function(){
-			return {
-				// Toteuta FirebaseServicen mockatut metodit tähän
-			}
-		})();
+            var movies = [];
+            return {
+                addMovie: function(movie){
+                    movies.push(movie);
+                },
+                getMovies: function(){
+                    return movies;
+                }
+            };
+        })();
 
-		// Lisää vakoilijat
-	    // spyOn(FirebaseServiceMock, 'jokuFunktio').and.callThrough();
+	// Lisää vakoilijat
+	spyOn(FirebaseServiceMock, 'addMovie').and.callThrough();
 
     	// Injektoi toteuttamasi kontrolleri tähän
-	    inject(function($controller, $rootScope) {
-	      scope = $rootScope.$new();
-	      // Muista vaihtaa oikea kontrollerin nimi!
-	      controller = $controller('MyAwesomeController', {
+	inject(function($controller, $rootScope) {
+	    scope = $rootScope.$new();
+	    // Muista vaihtaa oikea kontrollerin nimi!
+	    controller = $controller('AddMovieController', {
 	        $scope: scope,
 	        FirebaseService: FirebaseServiceMock
 	      });
@@ -38,7 +44,17 @@ describe('Add movie', function(){
   	* toBeCalled-oletusta.
 	*/
 	it('should be able to add a movie by its name, director, release date and description', function(){
-		expect(true).toBe(false);
+            scope.movieName = "Return of the FooBar";
+            scope.movieDirector = "Bar Foo";
+            scope.movieYear = '2015';
+            scope.movieDescription = "lorem bacon ipsum bratwurst spam spam spam egs and spam";
+            scope.addMovie();
+            expect(FirebaseServiceMock.addMovie).toHaveBeenCalled();
+            expect(scope.movies.length).toBe(1);
+            expect(scope.movies[0].name).toBe("Return of the FooBar");
+            expect(scope.movies[0].director).toBe("Bar Foo")
+            expect(scope.movies[0].year).toBe('2015')
+            expect(scope.movies[0].description).toBe("lorem bacon ipsum bratwurst spam spam spam egs and spam")
 	});
 
 	/*	
@@ -48,6 +64,34 @@ describe('Add movie', function(){
 	* not.toBeCalled-oletusta (muista not-negaatio!).
 	*/
 	it('should not be able to add a movie if its name, director, release date or description is empty', function(){
-		expect(true).toBe(false);
+            scope.movieName = '';
+            scope.movieDirector = "Bar Foo";
+            scope.movieYear = '2015';
+            scope.movieDescription = "lorem bacon ipsum bratwurst spam spam spam egs and spam";
+            scope.addMovie();
+            expect(FirebaseServiceMock.addMovie).not.toHaveBeenCalled();
+            
+            scope.movieName = "Return of the FooBar";
+            scope.movieDirector = '';
+            scope.movieYear = '2015';
+            scope.movieDescription = "lorem bacon ipsum bratwurst spam spam spam egs and spam";
+            scope.addMovie();
+            expect(FirebaseServiceMock.addMovie).not.toHaveBeenCalled();
+            
+            scope.movieName = "Return of the FooBar";
+            scope.movieDirector = "Bar Foo";
+            scope.movieYear = '';
+            scope.movieDescription = "lorem bacon ipsum bratwurst spam spam spam egs and spam";
+            scope.addMovie();
+            expect(FirebaseServiceMock.addMovie).not.toHaveBeenCalled();
+            
+            scope.movieName = "Return of the FooBar";
+            scope.movieDirector = "Bar Foo";
+            scope.movieYear = '2015';
+            scope.movieDescription = '';
+            scope.addMovie();
+            expect(FirebaseServiceMock.addMovie).not.toHaveBeenCalled();
+            
+            expect(scope.movies.length).toBe(0);
 	});
 });
