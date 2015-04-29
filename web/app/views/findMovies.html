@@ -1,0 +1,18 @@
+<h1>Etsi elokuvia</h1>
+<div ng-controler="AddMovieController">
+    <form>
+        <label>Nimi</label>
+        <input name="movieName" type="text" ng-model="movieName">
+
+        <label>Vuosi</label>
+        <input name="movieYear" type="number" ng-model="movieYear">
+        <input type="submit" value="Hae" ng-click="findMovie()">
+    </form>
+    <p ng-show="notfound">Hakusanalla ei löytynyt elokuvia</p>
+    <p ng-show="found">Löytyi <ng-pluralize count="findcount" offset='1'
+                                            when="{'1': '{{findcount}} elokuva',
+                                            'other': '{{findcount}} elokuvaa'}"></ng-pluralize></p>
+    <ul ng-repeat="movie in movies">
+        <li><a ng-href="http://www.imdb.com/title/{{movie.imdbID}}">{{movie.Title}}</a> ({{movie.Year}})</li>
+    </ul>
+</div>
