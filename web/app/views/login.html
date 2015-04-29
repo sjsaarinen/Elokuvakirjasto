@@ -1,0 +1,19 @@
+<div ng-controler="UserController">
+    <h1>Kirjaudu</h1>
+    <form>
+        <label>Sähköposti</label>
+        <input name="email" type="text" ng-model="email">
+        <label>Salasana</label>
+        <input name="password" type="password" ng-model="password">
+        <input type="submit" value="Kirjaudu" ng-click="logIn()">        
+    </form>
+    <p ng-show="message">{{message}}</p>
+    <h1>Rekisteröidy</h1>
+    <form>
+        <label>Sähköposti</label>
+        <input name="newEmail" type="text" ng-model="newEmail">
+        <label>Salasana</label>
+        <input name="newPassword" type="password" ng-model="newPassword">
+        <input type="submit" value="rekisteröidy" ng-click="register()">        
+    </form>
+</div>
