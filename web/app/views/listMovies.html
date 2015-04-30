@@ -1,6 +1,18 @@
-<h1>list of movies</h1>
 <div ng-controler="ListMoviesController">
-    <ul ng-repeat="movie in movies">
-        <li><a ng-href="#/movies/{{movie.$id}}">{{movie.name}}</a> <button ng-show="userLoggedIn" ng-click="removeMovie(movie)">poista</button></li>
-    </ul>
+<h2>Elokuvat</h2>
+    <table class="table">  
+        <tr>
+            <th>Nimi</th>
+            <th>Ohjaaja</th>
+            <th>Julkaisuvuosi</th>
+            <th> </th>
+        </tr>
+        <tr ng-repeat="movie in movies">
+            <td><a ng-href="#/movies/{{movie.$id}}">{{movie.name}}</a></td>
+            <td>{{movie.director}}</td>
+            <td>{{movie.year}}</td>
+            <td> <button class="btn-sm btn-danger" ng-show="userLoggedIn" ng-click="removeMovie(movie)">poista</button></td>
+        </tr>
+
+    </table>
 </div>

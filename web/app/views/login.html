@@ -1,19 +1,28 @@
-<div ng-controler="UserController">
-    <h1>Kirjaudu</h1>
+<div class="col-sm-6" ng-controler="UserController">
+    <h2>Kirjaudu</h2>
+    <p class="bg-danger" ng-show="message">{{message}}</p>
     <form>
-        <label>Sähköposti</label>
-        <input name="email" type="text" ng-model="email">
-        <label>Salasana</label>
-        <input name="password" type="password" ng-model="password">
-        <input type="submit" value="Kirjaudu" ng-click="logIn()">        
+        <div class="form-group">
+            <label for="emailLogin">Sähköposti</label>
+            <input name="email" class="form-control" type="email" ng-model="email" id="emailLogin">
+        </div>
+        <div class="form-group">
+            <label for="passwordLogin">Salasana</label>
+            <input name="password" class="form-control" type="password" ng-model="password" id="passwordLogin">
+        </div>    
+        <button type="submit" class="btn btn-primary" ng-click="logIn()">Kirjaudu</button>       
     </form>
-    <p ng-show="message">{{message}}</p>
-    <h1>Rekisteröidy</h1>
+    
+    <h2>Rekisteröidy</h2>
     <form>
-        <label>Sähköposti</label>
-        <input name="newEmail" type="text" ng-model="newEmail">
-        <label>Salasana</label>
-        <input name="newPassword" type="password" ng-model="newPassword">
-        <input type="submit" value="rekisteröidy" ng-click="register()">        
+        <div class="form-group">
+            <label for="newEmail">Sähköposti</label>
+            <input name="newEmail" class="form-control" type="email" ng-model="newEmail" id="newEmail">
+        </div>
+        <div class="form-group">
+            <label for="newPassword">Salasana</label>
+            <input name="newPassword" class="form-control" type="password" ng-model="newPassword" id="newEmail">
+        </div>
+        <button type="submit" class="btn btn-primary" ng-click="register()">Rekisteröidy</button>        
     </form>
 </div>

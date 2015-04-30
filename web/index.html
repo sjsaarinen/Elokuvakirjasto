@@ -4,15 +4,33 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="bootstrap-3.3.2-dist/css/bootstrap.min.css">
         <title>Elokuvakirjasto</title>
     </head>
     <body ng-app="MovieApp">
-        <a href ="#/movies">listaa</a> | <a href ="#/movies/new">lisää uusi</a> | <a href="#/movies/find">Hae OMDb:stä</a> | <a ng-hide="userLoggedIn" href="#/login">Kirjaudu</a><button ng-show="userLoggedIn" ng-click="logOut()">Kirjaudu ulos</button>
-        
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/">Elokuvakirjasto</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href ="#/movies">Elokuvat</a></li>
+                        <li><a href ="#/movies/new">Lisää uusi</a></li>
+                        <li><a href="#/movies/find">Hae OMDb:stä</a></li>                       
+                    </ul>
+                    <p class="navbar-text navbar-right" ng-hide="userLoggedIn"><a href="#/login">Kirjaudu</a></p><button class="btn btn-default navbar-btn navbar-right" ng-show="userLoggedIn" ng-click="logOut()">Kirjaudu ulos</button>
+                </div>
+            </div>    
+        </nav>
         <div ng-controller="MovieController">
-            <div ng-view>
-            
-            </div>
+            <div class="wrapper">
+                <div class="content-main col-sm-10">
+                    <div ng-view>
+                
+                    </div>
+                </div>    
+            </div>    
         </div>
         
         <!-- Hyödyllisiä kirjastoja -->
@@ -20,7 +38,11 @@
         <script src="bower_components/angular-route/angular-route.min.js"></script>
         <script src="bower_components/firebase/firebase.js"></script>
         <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
-
+        <!-- jQuery -->
+        <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+        
         <!-- Linkitä omat tiedostosi tähän (huomaa, että polun juuri on web-kansio!) -->
         <script src="app/app.js"></script>
         <script src="app/services/firebase_service.js"></script>

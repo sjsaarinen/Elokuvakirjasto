@@ -1,7 +1,11 @@
 <div ng-controler="ShowMovieController">
     <h1>{{movie.name}} ({{movie.year}})</h1>
-    <p>director: {{movie.director}}</p>
+    <ul>
+        <li><strong>Ohjaaja: </strong>{{movie.director}}</li>
+        <li><strong>Vuosi: </strong>{{movie.year}}</li>
+    </ul>
+    
     <p>{{movie.description}}</p>
     
-    <p><a ng-href="#/movies/{{moviekey}}/edit">muokkaa</a></p>
+    <p><a ng-href="#/movies/{{moviekey}}/edit">Muokkaa</a></p>
 </div>    

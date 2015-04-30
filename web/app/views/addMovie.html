@@ -1,30 +1,34 @@
-<h1>Lisää uusi elokuva</h1>
+<h2>Lisää uusi elokuva</h2>
 <div ng-controler="AddMovieController">
     <form name="movieForm">
-        <label>Nimi</label>
-        <input name="movieName" type="text" ng-model="movieName" required ng-minlength="1">
-        <div ng-show="movieForm.movieName.$invalid && movieForm.movieName.$dirty">
-            <p>Elokuvan nimi ei saa olla tyhjä</p>
+        <div class="form-group">
+            <label for="movieName">Nimi</label>
+            <input name="movieName" class="form-control" type="text" id="movieName" ng-model="movieName" required ng-minlength="1">
+            <div ng-show="movieForm.movieName.$invalid && movieForm.movieName.$dirty">
+                <p class="bg-danger">Elokuvan nimi ei saa olla tyhjä</p>
+            </div>
         </div>
-        <br>
-        <label>Ohjaaja</label>
-        <input name="movieDirector" type="text" ng-model="movieDirector" required ng-minlength="1">
-        <div ng-show="movieForm.movieDirector.$invalid && movieForm.movieDirector.$dirty">
-            <p>Ohjaaja ei saa olla tyhjä</p>
+        <div class="form-group">
+            <label for="movieDirector">Ohjaaja</label>
+            <input name="movieDirector" class="form-control" type="text" id="movieDirector" ng-model="movieDirector" required ng-minlength="1">
+            <div ng-show="movieForm.movieDirector.$invalid && movieForm.movieDirector.$dirty">
+                <p class="bg-danger">Ohjaaja ei saa olla tyhjä</p>
+            </div>
         </div>
-        <br>
-        <label>Julkaisuvuosi</label>
-        <input name="movieYear" type="number" ng-model="movieYear" required ng-pattern="/^[0-9]{4,}$/">
-        <div ng-show="movieForm.movieYear.$invalid && movieForm.movieYear.$dirty">
-            <p>Julkaisuvuosi ei ole validi</p>
-        </div>
-        <br>
-        <label>Kuvaus</label>
-        <textarea name="movieDescription" type="text" ng-model="movieDescription" required ng-minlength="1"></textarea>
-        <div ng-show="movieForm.movieDescription.$invalid && movieForm.movieDescription.$dirty">
-            <p>Kuvaus ei saa olla tyhjä</p>
-        </div>
-        <br>
-        <input type="submit" value="Lisää" ng-click="addMovie()" ng-disabled="movieForm.$invalid">
+        <div class="form-group">
+            <label for="movieYear">Julkaisuvuosi</label>
+            <input name="movieYear" class="form-control" type="number" id="movieYear" ng-model="movieYear" required ng-pattern="/^[0-9]{4,}$/">
+            <div ng-show="movieForm.movieYear.$invalid && movieForm.movieYear.$dirty">
+                <p class="bg-danger">Julkaisuvuosi ei ole validi</p>
+            </div>
+        </div>    
+        <div class="form-group">
+            <label for="movieDescription">Kuvaus</label>
+            <textarea name="movieDescription" class="form-control" id="movieDescription" type="text" ng-model="movieDescription" required ng-minlength="1"></textarea>
+            <div ng-show="movieForm.movieDescription.$invalid && movieForm.movieDescription.$dirty">
+                <p class="bg-danger">Kuvaus ei saa olla tyhjä</p>
+            </div>
+        </div>    
+        <button type="submit" class="btn btn-primary" ng-click="addMovie()" ng-disabled="movieForm.$invalid">Lisää</button>
     </form>
 </div>

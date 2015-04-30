@@ -4,6 +4,7 @@ MovieApp.controller('EditMovieController', function($scope, $location, currentAu
     }
     FirebaseService.getMovie($routeParams.key, function(data){
         $scope.movie = data;
+        $scope.originalName = data.name;
     });
     $scope.saveMovie = function(){
         if($scope.movie.name != '' && $scope.movie.director != "" && $scope.movie.year != '' && $scope.movie.description != ''){
